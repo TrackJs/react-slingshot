@@ -41,6 +41,7 @@ describe('<FuelSavingsForm />', () => {
     const fuelSavings = getFuelSavings();
     const wrapper = shallow(<FuelSavingsForm
       onSaveClick={jest.fn()}
+      onErrorClick={jest.fn()}
       onChange={jest.fn()}
       fuelSavings={fuelSavings}
     />);

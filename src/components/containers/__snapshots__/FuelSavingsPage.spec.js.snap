@@ -135,5 +135,10 @@ exports[`<FuelSavingsPage /> should match snapshot 1`] = `
     type="submit"
     value="Save"
   />
+  <input
+    onClick={[Function]}
+    type="button"
+    value="Error"
+  />
 </div>
 `;

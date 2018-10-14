@@ -10,6 +10,7 @@ import initialState from "../../reducers/initialState";
 describe("<FuelSavingsPage />", () => {
   const actions = {
     saveFuelSavings: jest.fn(),
+    onErrorClick: jest.fn(),
     calculateFuelSavings: jest.fn()
   };
 

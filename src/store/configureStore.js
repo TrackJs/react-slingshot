@@ -5,6 +5,7 @@ import createHistory from 'history/createBrowserHistory';
 // 'routerMiddleware': the new way of storing route changes with redux middleware since rrV4.
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import rootReducer from '../reducers';
+import consoleLoggerMiddleware from './consoleLoggerMiddleware'
 
 export const history = createHistory();
 const connectRouterHistory = connectRouter(history);
@@ -18,11 +19,12 @@ function configureStoreProd(initialState) {
     // https://github.com/reduxjs/redux-thunk#injecting-a-custom-argument
     thunk,
     reactRouterMiddleware,
+    consoleLoggerMiddleware,
   ];
 
   return createStore(
-    connectRouterHistory(rootReducer), 
-    initialState, 
+    connectRouterHistory(rootReducer),
+    initialState,
     compose(applyMiddleware(...middlewares))
   );
 }
@@ -43,8 +45,8 @@ function configureStoreDev(initialState) {
 
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools
   const store = createStore(
-    connectRouterHistory(rootReducer),  
-    initialState, 
+    connectRouterHistory(rootReducer),
+    initialState,
     composeEnhancers(applyMiddleware(...middlewares))
   );
 
@@ -55,7 +57,6 @@ function configureStoreDev(initialState) {
       store.replaceReducer(connectRouterHistory(nextRootReducer));
     });
   }
-
   return store;
 }
 

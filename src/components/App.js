@@ -8,12 +8,22 @@ import NotFoundPage from "./NotFoundPage";
 import PropTypes from "prop-types";
 import React from "react";
 import { hot } from "react-hot-loader";
+import { TrackJS } from "trackjs";
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
 // component at the top-level.
 
 class App extends React.Component {
+
+  // Best place to captured detailed component information about the error.
+  componentDidCatch(error, info) {
+    if (info && info.componentStack) {
+      TrackJS.console.log(info.componentStack);
+    }
+    TrackJS.track(error);
+  }
+
   render() {
     const activeStyle = { color: 'blue' };
     return (

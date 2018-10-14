@@ -6,8 +6,15 @@ import * as actions from '../../actions/fuelSavingsActions';
 import FuelSavingsForm from '../FuelSavingsForm';
 
 export class FuelSavingsPage extends React.Component {
+  hasErrored = false;
+
   saveFuelSavings = () => {
     this.props.actions.saveFuelSavings(this.props.fuelSavings);
+  }
+
+  onErrorClick = () => {
+    this.hasErrored = true;
+    this.props.actions.calculateError();
   }
 
   calculateFuelSavings = e => {
@@ -15,9 +22,11 @@ export class FuelSavingsPage extends React.Component {
   }
 
   render() {
+    if (this.hasErrored) { window.willThrowRenderError(); }
     return (
       <FuelSavingsForm
         onSaveClick={this.saveFuelSavings}
+        onErrorClick={this.onErrorClick}
         onChange={this.calculateFuelSavings}
         fuelSavings={this.props.fuelSavings}
       />
